@@ -12,8 +12,8 @@ public class SerializatorDeserializator {
 
     public static <T> void serializeIt(T o, String fileName) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName + EXTENSION))) {
-            oos.writeObject(o);
             System.out.println("your object is successfully serialized");
+            oos.writeObject(o);
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -30,4 +30,13 @@ public class SerializatorDeserializator {
         return null;
     }
 
+    public static <T> T deserializeIt(Class<T> objClass, String fileName) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName + EXTENSION))) {
+            System.out.println("deserialization completed");
+            return (T) ois.readObject();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
 }
