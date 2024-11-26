@@ -33,7 +33,7 @@ public class XMLficator {
     }
 
     // для коллекции
-    public static <C extends Collection<T>, T> C readFromXML(Class<C> collectionClass, Class<T> collectionObjectClass, String fileName) {
+    public static <C extends Collection<?>> C readFromXML(Class<C> collectionClass, Class<?> collectionObjectClass, String fileName) {
         File file = new File(fileName + EXTENSION);
         if (file.exists()) {
             try {

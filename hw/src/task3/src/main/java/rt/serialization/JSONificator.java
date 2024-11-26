@@ -35,7 +35,7 @@ public class JSONificator {
     }
 
     // для коллекции
-    public static <C extends Collection<T>, T> C readFromJSON(Class<C> collectionClass, Class<T> collectionObjectClass, String fileName) {
+    public static <C extends Collection<?>> C readFromJSON(Class<C> collectionClass, Class<?> collectionObjectClass, String fileName) {
         File file = new File(fileName + EXTENSION);
         if (file.exists()) {
             try {
