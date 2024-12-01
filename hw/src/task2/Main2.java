@@ -6,7 +6,7 @@ public class Main2 {
 
     public static void main(String[] args) {
 
-        Arrays.asList(String.class.getMethods()).forEach(m -> System.out.println(m));
+        Arrays.asList(String.class.getMethods()).forEach(System.out::println);
 
     }
 }
