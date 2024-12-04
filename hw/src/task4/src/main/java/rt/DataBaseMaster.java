@@ -27,7 +27,7 @@ public class DataBaseMaster {
         }
     }
 
-    public <T> void addObjectToDB(T object) {
+    public <T extends Object> void addObjectToDB(T object) {
         try (Session session = sf.getCurrentSession()) {
             session.beginTransaction();
             session.persist(object);
@@ -37,7 +37,7 @@ public class DataBaseMaster {
         }
     }
 
-    public <T> void removeFromDB(T object) {
+    public <T extends Object> void removeFromDB(T object) {
         try (Session session = sf.getCurrentSession()) {
             session.beginTransaction();
             session.remove(object);
