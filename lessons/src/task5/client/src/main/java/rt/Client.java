@@ -22,31 +22,26 @@ public class Client {
     }
 
     public void listenForMsg() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String msg;
-                while (socket.isConnected()) {
-                    try {
-                        msg = bufferedReader.readLine();
-                        System.out.println(msg);
-                    } catch (IOException e) {
-                        closeAll(socket, bufferedReader, bufferedWriter);
-                        System.out.println(e.getMessage());
-                        break;
-                    }
+        new Thread(() -> {
+            String msg;
+            while (socket.isConnected()) {
+                try {
+                    msg = bufferedReader.readLine();
+                    System.out.println(msg);
+                } catch (IOException e) {
+                    closeAll(socket, bufferedReader, bufferedWriter);
+                    System.out.println(e.getMessage());
+                    break;
                 }
             }
         }).start();
     }
 
     public void sendMsg() {
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             bufferedWriter.write(name);
             bufferedWriter.newLine();
             bufferedWriter.flush();
-
-            Scanner scanner = new Scanner(System.in);
             while (socket.isConnected()) {
                 String msg = scanner.nextLine();
                 bufferedWriter.write(name + ": " + msg);

@@ -1,7 +1,7 @@
 package rt;
 
 import java.io.IOException;
-import java.net.InetAddress;
+// import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        try {
-            Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("your name: ");
             String name = scanner.nextLine();
 
